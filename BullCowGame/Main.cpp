@@ -9,6 +9,7 @@ bool AskToPlayAgain();
 FBullCowGame BCGame;
 
 int main() {
+	std::cout << BCGame.GetCurrentTry();
 	bool bPlayAgain = false;
 	do {
 		PrintIntro();
@@ -29,19 +30,25 @@ void PrintIntro() {
 }
 
 void PlayGame() {
+
+	BCGame.Reset();
 	
 	int MaxTries = BCGame.GetMaxTries();
 
 	for (int count = 1; count <= MaxTries; count++) {
-		std::string Guess = GetGuess();
+		std::string Guess = GetGuess(); //TODO make loop checking valid
+		// submit valid guess to the game
+		// print number of bulls and cows
 		std::cout << "Your guess was: " << Guess << std::endl;
 		std::cout << std::endl;
 	}
+
+	// TODO summeries game
 }
 
 std::string GetGuess() {
 	int CurrentTry = BCGame.GetCurrentTry();
-	std::cout << "Try " << CurrentTry << "Enter your guess: ";
+	std::cout << "Try " << CurrentTry << " Enter your guess: ";
 	std::string Guess = "";
 	std::getline(std::cin, Guess);
 	return Guess;
